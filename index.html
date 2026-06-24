@@ -1,126 +1,122 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferramenta Premiada — Loja das Cores</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans)}
-:root{--blue:#1B3A6B;--orange:#E8720C;--orange-light:#FDE9D9;--blue-light:#D6E4F0}
-
-.app{width:100%;min-height:600px}
-.topbar{background:var(--blue);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--border-radius-lg) var(--border-radius-lg) 0 0}
-.topbar-title{font-size:16px;font-weight:500;display:flex;align-items:center;gap:8px}
-.topbar-sub{font-size:12px;opacity:.7}
-.topbar-badge{background:var(--orange);color:#fff;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px}
-
-.nav{display:flex;gap:2px;background:var(--color-background-secondary);padding:6px;border-bottom:0.5px solid var(--color-border-tertiary)}
-.nav-btn{flex:1;padding:8px 6px;font-size:12px;font-weight:500;border:none;background:transparent;color:var(--color-text-secondary);cursor:pointer;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s}
-.nav-btn.active{background:var(--color-background-primary);color:var(--blue);border:0.5px solid var(--color-border-secondary)}
+body{font-family:Arial,sans-serif;background:#f0f2f5;min-height:100vh}
+:root{--blue:#1B3A6B;--orange:#E8720C;--ol:#FDE9D9;--bl:#D6E4F0;--white:#fff;--gray:#F5F5F5;--dark:#1a1a1a;--cc:#CCCCCC}
+.app{width:100%;min-height:100vh}
+.topbar{background:var(--blue);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-title{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.topbar-sub{font-size:12px;opacity:.7;margin-top:2px}
+.topbar-badge{background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.nav{display:flex;gap:2px;background:#e8eaed;padding:6px;border-bottom:1px solid #ddd}
+.nav-btn{flex:1;padding:8px 6px;font-size:12px;font-weight:600;border:none;background:transparent;color:#666;cursor:pointer;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s}
+.nav-btn.active{background:#fff;color:var(--blue);border:1px solid #ddd}
 .nav-btn i{font-size:15px}
-
 .panel{display:none;padding:16px}
 .panel.active{display:block}
-
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
-.metric-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px}
-.metric-val{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.metric{background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #eee}
+.metric-label{font-size:11px;color:#888;margin-bottom:4px}
+.metric-val{font-size:24px;font-weight:700;color:var(--dark)}
 .metric-val.orange{color:var(--orange)}
 .metric-val.blue{color:var(--blue)}
 .metric-val.green{color:#1D9E75}
 .metric-val.red{color:#E24B4A}
-
-.section-hd{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
-
-.table-wrap{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:16px}
+.section-hd{font-size:11px;font-weight:700;color:#888;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.table-wrap{background:#fff;border:1px solid #eee;border-radius:10px;overflow:hidden;margin-bottom:16px}
 table{width:100%;border-collapse:collapse;font-size:13px}
-thead{background:var(--color-background-secondary)}
-th{padding:9px 12px;text-align:left;font-weight:500;font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;border-bottom:0.5px solid var(--color-border-tertiary)}
-td{padding:9px 12px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+thead{background:#f8f9fa}
+th{padding:9px 12px;text-align:left;font-weight:700;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #eee}
+td{padding:9px 12px;border-bottom:1px solid #f0f0f0;color:var(--dark)}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:var(--color-background-secondary)}
-
-.badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px}
+tr:hover td{background:#fafafa}
+.badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px}
 .badge.verde{background:#EAF3DE;color:#3B6D11}
 .badge.laranja{background:#FAEEDA;color:#854F0B}
 .badge.azul{background:#E6F1FB;color:#185FA5}
-.badge.cinza{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.badge.cinza{background:#f0f0f0;color:#666}
 .badge.vermelho{background:#FCEBEB;color:#A32D2D}
 .badge.roxo{background:#EEEDFE;color:#534AB7}
-
 .toolbar{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.toolbar input,.toolbar select{font-size:13px;padding:6px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);flex:1;min-width:120px}
-.btn{font-size:12px;font-weight:500;padding:7px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.btn:hover{background:var(--color-background-secondary)}
+.toolbar input,.toolbar select{font-size:13px;padding:7px 10px;border-radius:6px;border:1px solid #ddd;background:#fff;color:var(--dark);flex:1;min-width:120px}
+.btn{font-size:12px;font-weight:600;padding:7px 14px;border-radius:6px;border:1px solid #ddd;background:#fff;color:var(--dark);cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.btn:hover{background:#f5f5f5}
 .btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
 .btn.primary:hover{opacity:.9}
 .btn.orange{background:var(--orange);color:#fff;border-color:var(--orange)}
 .btn.orange:hover{opacity:.9}
 .btn.sm{font-size:11px;padding:4px 10px}
-
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .form-grid.tri{grid-template-columns:1fr 1fr 1fr}
 .field{display:flex;flex-direction:column;gap:4px}
-.field label{font-size:11px;font-weight:500;color:var(--color-text-secondary)}
-.field input,.field select{font-size:13px;padding:7px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary)}
-
-.progress-bar{height:8px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden;margin:6px 0}
+.field label{font-size:11px;font-weight:700;color:#666}
+.field input,.field select{font-size:13px;padding:7px 10px;border-radius:6px;border:1px solid #ddd;background:#fff;color:var(--dark)}
+.progress-bar{height:8px;background:#eee;border-radius:4px;overflow:hidden;margin:6px 0}
 .progress-fill{height:100%;background:var(--orange);border-radius:4px;transition:width .3s}
-
-.sortear-box{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:20px;text-align:center;margin-bottom:16px}
-.sortear-result{font-size:32px;font-weight:500;color:var(--blue);margin:12px 0;min-height:48px}
-.sortear-name{font-size:14px;color:var(--color-text-secondary)}
-
-.pag-linha{display:flex;gap:6px;flex-wrap:wrap}
-.pag-mes{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;cursor:pointer;border:none;transition:all .15s}
+.sortear-box{background:#f8f9fa;border:1px solid #eee;border-radius:10px;padding:20px;text-align:center;margin-bottom:16px}
+.sortear-result{font-size:40px;font-weight:900;color:var(--blue);margin:12px 0;min-height:56px}
+.sortear-name{font-size:14px;color:#888}
+.pag-linha{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.pag-mes{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
 .pag-mes.pago{background:#EAF3DE;color:#3B6D11}
 .pag-mes.pendente{background:#FAEEDA;color:#854F0B}
 .pag-mes.atrasado{background:#FCEBEB;color:#A32D2D}
-.pag-mes.futuro{background:var(--color-background-secondary);color:var(--color-text-secondary)}
-.pag-mes.contemplado{background:#EEEDFE;color:#534AB7}
-
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:999;display:none}
-.modal-bg.open{display:flex}
-.modal{background:var(--color-background-primary);border-radius:var(--border-radius-lg);padding:20px;width:360px;max-width:95vw;border:0.5px solid var(--color-border-secondary)}
+.pag-mes.futuro{background:#f0f0f0;color:#aaa}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:20px;width:380px;max-width:95vw;box-shadow:0 10px 40px rgba(0,0,0,.2)}
 .modal-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.modal-hd h3{font-size:15px;font-weight:500}
-
+.modal-hd h3{font-size:15px;font-weight:700;color:var(--dark)}
 .chart-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px}
-.chart-bar-label{width:80px;color:var(--color-text-secondary);text-align:right;flex-shrink:0}
-.chart-bar-fill{height:20px;border-radius:3px;min-width:4px;transition:width .3s}
-.chart-bar-val{color:var(--color-text-primary);font-weight:500;white-space:nowrap}
-
-.alert{padding:10px 14px;border-radius:var(--border-radius-md);font-size:13px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.alert.warning{background:#FAEEDA;color:#854F0B;border:0.5px solid #FAC775}
-.alert.info{background:#E6F1FB;color:#185FA5;border:0.5px solid #B5D4F4}
-.alert.success{background:#EAF3DE;color:#3B6D11;border:0.5px solid #C0DD97}
-
-.tag-interessado{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:20px}
-.tag-quente{background:#FCEBEB;color:#A32D2D}
-.tag-morno{background:#FAEEDA;color:#854F0B}
-.tag-frio{background:#E6F1FB;color:#185FA5}
-
+.chart-bar-label{width:40px;color:#888;text-align:right;flex-shrink:0}
+.chart-bar-fill{height:22px;border-radius:4px;min-width:4px}
+.chart-bar-val{color:var(--dark);font-weight:700}
+.alert{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.alert.warning{background:#FAEEDA;color:#854F0B;border:1px solid #FAC775}
+.alert.info{background:#E6F1FB;color:#185FA5;border:1px solid #B5D4F4}
+.alert.success{background:#EAF3DE;color:#3B6D11;border:1px solid #C0DD97}
 .kanban{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.kanban-col{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px}
-.kanban-hd{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.kanban-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 10px;margin-bottom:6px}
-.kanban-card h4{font-size:13px;font-weight:500;margin-bottom:3px}
-.kanban-card p{font-size:11px;color:var(--color-text-secondary)}
-.kanban-card .card-actions{margin-top:6px;display:flex;gap:4px}
+.kanban-col{background:#f0f2f5;border-radius:8px;padding:10px}
+.kanban-hd{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.kanban-card{background:#fff;border:1px solid #eee;border-radius:8px;padding:10px;margin-bottom:6px}
+.kanban-card h4{font-size:13px;font-weight:700;margin-bottom:3px;color:var(--dark)}
+.kanban-card p{font-size:11px;color:#888;margin-bottom:2px}
+.card-actions{margin-top:8px;display:flex;gap:4px;flex-wrap:wrap}
+.tag{display:inline-flex;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.tag.quente{background:#FCEBEB;color:#A32D2D}
+.tag.morno{background:#FAEEDA;color:#854F0B}
+.tag.frio{background:#E6F1FB;color:#185FA5}
+@media(max-width:600px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .kanban{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-grid.tri{grid-template-columns:1fr}
+  .nav-btn span{display:none}
+}
 </style>
-
+</head>
+<body>
 <div class="app">
 <div class="topbar">
   <div>
-    <div class="topbar-title"><i class="ti ti-paint" aria-hidden="true"></i> Ferramenta Premiada — Loja das Cores</div>
+    <div class="topbar-title">🎨 Ferramenta Premiada — Loja das Cores</div>
     <div class="topbar-sub">Grupo 001 · Ciclo Julho/2025 · 15 meses</div>
   </div>
   <div class="topbar-badge" id="vagas-badge">0 / 30 cotas</div>
 </div>
 
 <div class="nav">
-  <button class="nav-btn active" onclick="showPanel('dashboard')"><i class="ti ti-layout-dashboard"></i> Dashboard</button>
-  <button class="nav-btn" onclick="showPanel('prospeccao')"><i class="ti ti-users"></i> Prospecção</button>
-  <button class="nav-btn" onclick="showPanel('participantes')"><i class="ti ti-id-badge-2"></i> Participantes</button>
-  <button class="nav-btn" onclick="showPanel('pagamentos')"><i class="ti ti-cash"></i> Pagamentos</button>
-  <button class="nav-btn" onclick="showPanel('sorteio')"><i class="ti ti-trophy"></i> Sorteio</button>
+  <button class="nav-btn active" onclick="showPanel('dashboard')"><i class="ti ti-layout-dashboard"></i> <span>Dashboard</span></button>
+  <button class="nav-btn" onclick="showPanel('prospeccao')"><i class="ti ti-users"></i> <span>Prospecção</span></button>
+  <button class="nav-btn" onclick="showPanel('participantes')"><i class="ti ti-id-badge-2"></i> <span>Participantes</span></button>
+  <button class="nav-btn" onclick="showPanel('pagamentos')"><i class="ti ti-cash"></i> <span>Pagamentos</span></button>
+  <button class="nav-btn" onclick="showPanel('sorteio')"><i class="ti ti-trophy"></i> <span>Sorteio</span></button>
 </div>
 
 <div id="panel-dashboard" class="panel active">
@@ -130,21 +126,15 @@ tr:hover td{background:var(--color-background-secondary)}
     <div class="metric"><div class="metric-label">Receita adm. total</div><div class="metric-val green" id="m-receita">R$ 0</div></div>
     <div class="metric"><div class="metric-label">Inadimplentes</div><div class="metric-val red" id="m-inad">0</div></div>
   </div>
-
   <div class="progress-bar"><div class="progress-fill" id="prog-bar" style="width:0%"></div></div>
-  <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:14px" id="prog-label">0% das vagas preenchidas</div>
-
-  <div class="alert info" id="alert-box"><i class="ti ti-info-circle"></i> <span id="alert-msg">Nenhuma cota cadastrada ainda. Adicione participantes na aba Participantes.</span></div>
-
+  <div style="font-size:11px;color:#888;margin-bottom:14px" id="prog-label">0% das vagas preenchidas</div>
+  <div class="alert info" id="alert-box"><i class="ti ti-info-circle"></i> <span id="alert-msg">Nenhuma cota cadastrada ainda.</span></div>
   <div class="section-hd">Distribuição por crédito</div>
   <div id="chart-creditos" style="margin-bottom:16px"></div>
-
-  <div class="section-hd">Últimos 5 movimentos</div>
+  <div class="section-hd">Últimos movimentos</div>
   <div class="table-wrap">
-    <table>
-      <thead><tr><th>Data</th><th>Participante</th><th>Ação</th><th>Valor</th></tr></thead>
-      <tbody id="tb-movimentos"><tr><td colspan="4" style="text-align:center;color:var(--color-text-secondary)">Sem movimentos</td></tr></tbody>
-    </table>
+    <table><thead><tr><th>Data</th><th>Participante</th><th>Ação</th><th>Valor</th></tr></thead>
+    <tbody id="tb-movimentos"><tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px">Sem movimentos</td></tr></tbody></table>
   </div>
 </div>
 
@@ -152,14 +142,10 @@ tr:hover td{background:var(--color-background-secondary)}
   <div class="toolbar">
     <input type="text" id="prosp-search" placeholder="Buscar prospecto..." oninput="renderProspeccao()">
     <select onchange="renderProspeccao()" id="prosp-filter">
-      <option value="">Todos</option>
-      <option value="quente">Quentes</option>
-      <option value="morno">Mornos</option>
-      <option value="frio">Frios</option>
+      <option value="">Todos</option><option value="quente">Quentes</option><option value="morno">Mornos</option><option value="frio">Frios</option>
     </select>
-    <button class="btn primary" onclick="openModalProsp()"><i class="ti ti-plus"></i> Novo Prospecto</button>
+    <button class="btn primary" onclick="openModal('modal-prosp')"><i class="ti ti-plus"></i> Novo Prospecto</button>
   </div>
-
   <div class="kanban" id="kanban-board"></div>
 </div>
 
@@ -167,20 +153,13 @@ tr:hover td{background:var(--color-background-secondary)}
   <div class="toolbar">
     <input type="text" id="part-search" placeholder="Buscar participante..." oninput="renderParticipantes()">
     <select id="part-filter" onchange="renderParticipantes()">
-      <option value="">Todos</option>
-      <option value="adimplente">Adimplentes</option>
-      <option value="pendente">Pendentes</option>
-      <option value="atrasado">Atrasados</option>
-      <option value="contemplado">Contemplados</option>
+      <option value="">Todos</option><option value="adimplente">Adimplentes</option><option value="pendente">Pendentes</option><option value="atrasado">Atrasados</option><option value="contemplado">Contemplados</option>
     </select>
-    <button class="btn primary" onclick="openModalPart()"><i class="ti ti-plus"></i> Novo Participante</button>
+    <button class="btn primary" onclick="openModal('modal-part')"><i class="ti ti-plus"></i> Novo Participante</button>
   </div>
-
   <div class="table-wrap">
-    <table>
-      <thead><tr><th>#</th><th>Nome</th><th>WhatsApp</th><th>Crédito</th><th>Parcela</th><th>Status</th><th>Cotas pagas</th><th>Ações</th></tr></thead>
-      <tbody id="tb-participantes"><tr><td colspan="8" style="text-align:center;color:var(--color-text-secondary)">Nenhum participante ainda.</td></tr></tbody>
-    </table>
+    <table><thead><tr><th>#</th><th>Nome</th><th>WhatsApp</th><th>Crédito</th><th>Parcela</th><th>Status</th><th>Progresso</th><th>Ações</th></tr></thead>
+    <tbody id="tb-participantes"><tr><td colspan="8" style="text-align:center;color:#aaa;padding:20px">Nenhum participante ainda.</td></tr></tbody></table>
   </div>
 </div>
 
@@ -189,23 +168,16 @@ tr:hover td{background:var(--color-background-secondary)}
     <select id="pag-filter-part" onchange="renderPagamentos()"><option value="">Todos os participantes</option></select>
     <select id="pag-filter-mes" onchange="renderPagamentos()">
       <option value="">Todos os meses</option>
-      ${Array.from({length:15},(_,i)=>`<option value="${i+1}">Mês ${i+1}</option>`).join('')}
+      <option value="1">Mês 1</option><option value="2">Mês 2</option><option value="3">Mês 3</option><option value="4">Mês 4</option><option value="5">Mês 5</option><option value="6">Mês 6</option><option value="7">Mês 7</option><option value="8">Mês 8</option><option value="9">Mês 9</option><option value="10">Mês 10</option><option value="11">Mês 11</option><option value="12">Mês 12</option><option value="13">Mês 13</option><option value="14">Mês 14</option><option value="15">Mês 15</option>
     </select>
     <select id="pag-filter-status" onchange="renderPagamentos()">
-      <option value="">Todos status</option>
-      <option value="pago">Pagos</option>
-      <option value="pendente">Pendentes</option>
-      <option value="atrasado">Atrasados</option>
+      <option value="">Todos status</option><option value="pago">Pagos</option><option value="pendente">Pendentes</option><option value="atrasado">Atrasados</option>
     </select>
   </div>
-
   <div class="table-wrap">
-    <table>
-      <thead><tr><th>Participante</th><th>Mês</th><th>Vencimento</th><th>Valor</th><th>Status</th><th>Ação</th></tr></thead>
-      <tbody id="tb-pagamentos"><tr><td colspan="6" style="text-align:center;color:var(--color-text-secondary)">Nenhum pagamento registrado.</td></tr></tbody>
-    </table>
+    <table><thead><tr><th>Participante</th><th>Mês</th><th>Vencimento</th><th>Valor</th><th>Status</th><th>Ação</th></tr></thead>
+    <tbody id="tb-pagamentos"><tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px">Nenhum pagamento.</td></tr></tbody></table>
   </div>
-
   <div class="metrics" style="margin-top:14px">
     <div class="metric"><div class="metric-label">Total recebido</div><div class="metric-val green" id="m-pag-rec">R$ 0</div></div>
     <div class="metric"><div class="metric-label">Total pendente</div><div class="metric-val orange" id="m-pag-pend">R$ 0</div></div>
@@ -216,36 +188,30 @@ tr:hover td{background:var(--color-background-secondary)}
 
 <div id="panel-sorteio" class="panel">
   <div class="alert success" id="sort-alerta" style="display:none"><i class="ti ti-trophy"></i> <span id="sort-alerta-msg"></span></div>
-
   <div class="sortear-box">
-    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">Participantes elegíveis (adimplentes não contemplados)</div>
+    <div style="font-size:13px;color:#888;margin-bottom:4px">Participantes elegíveis (adimplentes não contemplados)</div>
     <div class="sortear-result" id="sort-result">—</div>
     <div class="sortear-name" id="sort-name"></div>
     <div style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
       <button class="btn orange" onclick="rodarSorteio()"><i class="ti ti-dice-5"></i> Realizar Sorteio</button>
-      <button class="btn" onclick="confirmarSorteio()" id="btn-confirmar" style="display:none"><i class="ti ti-check"></i> Confirmar Contemplação</button>
+      <button class="btn primary" onclick="confirmarSorteio()" id="btn-confirmar" style="display:none"><i class="ti ti-check"></i> Confirmar Contemplação</button>
     </div>
   </div>
-
   <div class="section-hd">Histórico de Sorteios</div>
   <div class="table-wrap">
-    <table>
-      <thead><tr><th>Mês</th><th>Data</th><th>Contemplado</th><th>Crédito</th><th>Nº</th></tr></thead>
-      <tbody id="tb-sorteios"><tr><td colspan="5" style="text-align:center;color:var(--color-text-secondary)">Nenhum sorteio realizado.</td></tr></tbody>
-    </table>
+    <table><thead><tr><th>Mês</th><th>Data</th><th>Contemplado</th><th>Crédito</th><th>Cota</th></tr></thead>
+    <tbody id="tb-sorteios"><tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px">Nenhum sorteio realizado.</td></tr></tbody></table>
   </div>
-
   <div class="section-hd">Calendário do Grupo</div>
   <div class="table-wrap">
-    <table>
-      <thead><tr><th>Mês</th><th>Sorteio</th><th>Status</th><th>Contemplado</th></tr></thead>
-      <tbody id="tb-calendario"></tbody>
-    </table>
+    <table><thead><tr><th>Mês</th><th>Período</th><th>Status</th><th>Contemplado</th></tr></thead>
+    <tbody id="tb-calendario"></tbody></table>
   </div>
 </div>
 </div>
 
-<div class="modal-bg" id="modal-prosp">
+<!-- MODAIS -->
+<div class="modal-overlay" id="modal-prosp">
   <div class="modal">
     <div class="modal-hd"><h3>Novo Prospecto</h3><button class="btn sm" onclick="closeModal('modal-prosp')"><i class="ti ti-x"></i></button></div>
     <div class="form-grid">
@@ -257,7 +223,7 @@ tr:hover td{background:var(--color-background-secondary)}
       <div class="field"><label>Temperatura</label><select id="p-temp"><option value="quente">Quente</option><option value="morno">Morno</option><option value="frio">Frio</option></select></div>
       <div class="field"><label>Como chegou</label><select id="p-origem"><option>Feijoada</option><option>Indicação</option><option>Loja</option><option>Instagram</option><option>WhatsApp</option></select></div>
     </div>
-    <div class="field" style="margin-bottom:12px"><label>Observações</label><input id="p-obs" type="text" placeholder="Anotações, dúvidas, próximo passo..."></div>
+    <div class="field" style="margin-bottom:12px"><label>Observações</label><input id="p-obs" type="text" placeholder="Anotações, próximo passo..."></div>
     <div style="display:flex;gap:8px;justify-content:flex-end">
       <button class="btn" onclick="closeModal('modal-prosp')">Cancelar</button>
       <button class="btn primary" onclick="salvarProspecto()"><i class="ti ti-check"></i> Salvar</button>
@@ -265,7 +231,7 @@ tr:hover td{background:var(--color-background-secondary)}
   </div>
 </div>
 
-<div class="modal-bg" id="modal-part">
+<div class="modal-overlay" id="modal-part">
   <div class="modal">
     <div class="modal-hd"><h3>Novo Participante</h3><button class="btn sm" onclick="closeModal('modal-part')"><i class="ti ti-x"></i></button></div>
     <div class="form-grid">
@@ -279,13 +245,13 @@ tr:hover td{background:var(--color-background-secondary)}
     <div class="form-grid">
       <div class="field"><label>Crédito escolhido</label>
         <select id="np-credito">
-          <option value="3000">R$ 3.000,00 — 15x R$ 230,00</option>
-          <option value="4000">R$ 4.000,00 — 15x R$ 306,67</option>
-          <option value="5000" selected>R$ 5.000,00 — 15x R$ 383,33</option>
-          <option value="6000">R$ 6.000,00 — 15x R$ 460,00</option>
+          <option value="3000">R$ 3.000 — 15x R$ 230,00</option>
+          <option value="4000">R$ 4.000 — 15x R$ 306,67</option>
+          <option value="5000" selected>R$ 5.000 — 15x R$ 383,33</option>
+          <option value="6000">R$ 6.000 — 15x R$ 460,00</option>
         </select>
       </div>
-      <div class="field"><label>Vencimento (dia)</label><input id="np-venc" type="number" value="5" min="1" max="28"></div>
+      <div class="field"><label>Vencimento (dia do mês)</label><input id="np-venc" type="number" value="5" min="1" max="28"></div>
     </div>
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
       <button class="btn" onclick="closeModal('modal-part')">Cancelar</button>
@@ -294,138 +260,102 @@ tr:hover td{background:var(--color-background-secondary)}
   </div>
 </div>
 
-<div class="modal-bg" id="modal-pag">
+<div class="modal-overlay" id="modal-pag">
   <div class="modal">
-    <div class="modal-hd"><h3 id="modal-pag-titulo">Registrar Pagamento</h3><button class="btn sm" onclick="closeModal('modal-pag')"><i class="ti ti-x"></i></button></div>
+    <div class="modal-hd"><h3 id="modal-pag-titulo">Pagamentos</h3><button class="btn sm" onclick="closeModal('modal-pag')"><i class="ti ti-x"></i></button></div>
     <div id="modal-pag-body"></div>
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-      <button class="btn" onclick="closeModal('modal-pag')">Fechar</button>
-      <button class="btn primary" onclick="confirmarPagamento()"><i class="ti ti-check"></i> Marcar como Pago</button>
+      <button class="btn primary" onclick="closeModal('modal-pag')">Fechar</button>
     </div>
   </div>
 </div>
 
 <script>
-const CREDITOS = {3000:{taxa:450,total:3450,parcela:230},4000:{taxa:600,total:4600,parcela:306.67},5000:{taxa:750,total:5750,parcela:383.33},6000:{taxa:900,total:6900,parcela:460}};
-const MESES = ['Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26','Set/26'];
+const CREDITOS={3000:{taxa:450,total:3450,parcela:230},4000:{taxa:600,total:4600,parcela:306.67},5000:{taxa:750,total:5750,parcela:383.33},6000:{taxa:900,total:6900,parcela:460}};
+const MESES=['Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26','Set/26'];
 
-let prospectos = [], participantes = [], sorteios = [], movimentos = [];
-let sorteioPendente = null;
-let pagamentoAtual = null;
+let prospectos=[],participantes=[],sorteios=[],movimentos=[];
+let candidatoSorteio=null;
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
+const fmt=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtDate=d=>{if(!d)return'—';return new Date(d+'T12:00:00').toLocaleDateString('pt-BR')};
+const today=()=>new Date().toISOString().split('T')[0];
 
-function fmt(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function fmtDate(d){if(!d)return'—';return new Date(d+'T12:00:00').toLocaleDateString('pt-BR')}
-function today(){return new Date().toISOString().split('T')[0]}
+function save(){try{localStorage.setItem('fp_prosp',JSON.stringify(prospectos));localStorage.setItem('fp_part',JSON.stringify(participantes));localStorage.setItem('fp_sort',JSON.stringify(sorteios));localStorage.setItem('fp_mov',JSON.stringify(movimentos));}catch(e){}}
+function load(){try{prospectos=JSON.parse(localStorage.getItem('fp_prosp')||'[]');participantes=JSON.parse(localStorage.getItem('fp_part')||'[]');sorteios=JSON.parse(localStorage.getItem('fp_sort')||'[]');movimentos=JSON.parse(localStorage.getItem('fp_mov')||'[]');}catch(e){prospectos=[];participantes=[];sorteios=[];movimentos=[];}}
 
 function showPanel(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   $('panel-'+id).classList.add('active');
-  const btns = document.querySelectorAll('.nav-btn');
-  const map = {dashboard:0,prospeccao:1,participantes:2,pagamentos:3,sorteio:4};
-  btns[map[id]].classList.add('active');
-  if(id==='dashboard') renderDashboard();
-  if(id==='prospeccao') renderProspeccao();
-  if(id==='participantes') renderParticipantes();
-  if(id==='pagamentos') renderPagamentos();
-  if(id==='sorteio') renderSorteio();
+  const map={dashboard:0,prospeccao:1,participantes:2,pagamentos:3,sorteio:4};
+  document.querySelectorAll('.nav-btn')[map[id]].classList.add('active');
+  if(id==='dashboard')renderDashboard();
+  if(id==='prospeccao')renderProspeccao();
+  if(id==='participantes')renderParticipantes();
+  if(id==='pagamentos')renderPagamentos();
+  if(id==='sorteio')renderSorteio();
 }
 
 function openModal(id){$(id).classList.add('open')}
 function closeModal(id){$(id).classList.remove('open')}
-function openModalProsp(){$('p-nome').value='';$('p-zap').value='';$('p-obs').value='';openModal('modal-prosp')}
-function openModalPart(){$('np-nome').value='';$('np-cpf').value='';$('np-zap').value='';$('np-data').value=today();openModal('modal-part')}
+
+function addMov(nome,acao,valor){movimentos.unshift({data:today(),nome,acao,valor});if(movimentos.length>50)movimentos.pop();save();}
 
 function salvarProspecto(){
   const nome=$('p-nome').value.trim();
   if(!nome){alert('Informe o nome.');return}
-  const p={id:Date.now(),nome,zap:$('p-zap').value.trim(),credito:+$('p-credito').value,temp:$('p-temp').value,origem:$('p-origem').value,obs:$('p-obs').value.trim(),fase:'contato',data:today()};
-  prospectos.push(p);
-  addMov(p.nome,'Prospecto cadastrado','—');
+  prospectos.push({id:Date.now(),nome,zap:$('p-zap').value.trim(),credito:+$('p-credito').value,temp:$('p-temp').value,origem:$('p-origem').value,obs:$('p-obs').value.trim(),fase:'contato',data:today()});
+  addMov(nome,'Prospecto cadastrado','—');
   closeModal('modal-prosp');
-  renderProspeccao();
-  renderDashboard();
+  renderProspeccao();renderDashboard();
 }
 
 function avancarFase(id,fase){
   const p=prospectos.find(x=>x.id===id);
-  if(p){p.fase=fase;addMov(p.nome,'Fase: '+fase,'—');renderProspeccao();}
+  if(p){p.fase=fase;save();renderProspeccao();}
 }
 
 function converterParticipante(id){
   const p=prospectos.find(x=>x.id===id);
   if(!p)return;
   $('np-nome').value=p.nome;$('np-zap').value=p.zap;$('np-data').value=today();$('np-credito').value=p.credito||5000;
-  openModal('modal-part');
+  closeModal('modal-prosp');openModal('modal-part');
 }
 
 function salvarParticipante(){
   const nome=$('np-nome').value.trim();
   if(!nome){alert('Informe o nome.');return}
-  if(participantes.length>=30){alert('Grupo já está completo com 30 cotas!');return}
+  if(participantes.length>=30){alert('Grupo já completo com 30 cotas!');return}
   const credito=+$('np-credito').value;
   const {parcela,taxa}=CREDITOS[credito];
-  const venc=+$('np-venc').value||5;
-  const dataAdesao=$('np-data').value||today();
   const num=participantes.length+1;
   const pag=Array.from({length:15},(_,i)=>({mes:i+1,status:'pendente',dataPag:null,valor:+parcela.toFixed(2)}));
-  pag[0].status='pendente';
-  const part={id:Date.now(),num,nome,cpf:$('np-cpf').value.trim(),zap:$('np-zap').value.trim(),credito,parcela:+parcela.toFixed(2),taxa,venc,dataAdesao,status:'adimplente',contemplado:false,pagamentos:pag};
-  participantes.push(part);
+  participantes.push({id:Date.now(),num,nome,cpf:$('np-cpf').value.trim(),zap:$('np-zap').value.trim(),credito,parcela:+parcela.toFixed(2),taxa,venc:+$('np-venc').value||5,dataAdesao:$('np-data').value||today(),status:'adimplente',contemplado:false,pagamentos:pag});
   addMov(nome,'Adesão confirmada — cota #'+num,fmt(parcela));
-  closeModal('modal-part');
-  updateVagas();
-  renderParticipantes();
-  renderDashboard();
-  renderPagamentosFiltro();
-}
-
-function updateVagas(){
-  const n=participantes.length;
-  $('vagas-badge').textContent=n+' / 30 cotas';
-  $('m-cotas').textContent=n;
-  $('m-vagas').textContent=30-n;
-  const pct=Math.round(n/30*100);
-  $('prog-bar').style.width=pct+'%';
-  $('prog-label').textContent=pct+'% das vagas preenchidas';
-}
-
-function addMov(nome,acao,valor){
-  movimentos.unshift({data:today(),nome,acao,valor});
-  if(movimentos.length>50)movimentos.pop();
+  save();closeModal('modal-part');
+  renderParticipantes();renderDashboard();renderPagFiltro();
 }
 
 function renderDashboard(){
-  updateVagas();
-  const inad=participantes.filter(p=>p.status==='atrasado').length;
-  $('m-inad').textContent=inad;
-  const totalTaxa=participantes.reduce((s,p)=>{
-    const pagos=p.pagamentos.filter(x=>x.status==='pago').length;
-    return s+(pagos*(p.taxa/15));
-  },0);
-  $('m-receita').textContent=fmt(totalTaxa);
-
-  const contagem={3000:0,4000:0,5000:0,6000:0};
-  participantes.forEach(p=>contagem[p.credito]=(contagem[p.credito]||0)+1);
-  const maxC=Math.max(...Object.values(contagem),1);
-  const colors={'3000':'#185FA5','4000':'#1D9E75','5000':('#E8720C'),'6000':'#534AB7'};
-  $('chart-creditos').innerHTML=Object.entries(contagem).map(([k,v])=>`
-    <div class="chart-bar-row">
-      <div class="chart-bar-label">R$ ${(+k/1000).toFixed(0)}k</div>
-      <div class="chart-bar-fill" style="width:${Math.round(v/maxC*200)+4}px;background:${colors[k]}"></div>
-      <div class="chart-bar-val">${v} cota${v!==1?'s':''}</div>
-    </div>`).join('');
-
-  const alertMsg=participantes.length===0?'Nenhuma cota cadastrada ainda. Adicione participantes na aba Participantes.':participantes.length<30?`Faltam ${30-participantes.length} cotas para completar o Grupo 001. Mantenha a prospecção ativa!`:'Grupo 001 completo! Todos os 30 participantes estão cadastrados.';
-  const alertType=participantes.length===30?'success':participantes.length>0?'info':'info';
-  $('alert-box').className='alert '+alertType;
-  $('alert-msg').textContent=alertMsg;
-
-  const tbody=$('tb-movimentos');
-  if(movimentos.length===0){tbody.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--color-text-secondary)">Sem movimentos</td></tr>';return}
-  tbody.innerHTML=movimentos.slice(0,5).map(m=>`<tr><td>${fmtDate(m.data)}</td><td>${m.nome}</td><td>${m.acao}</td><td>${m.valor}</td></tr>`).join('');
+  const n=participantes.length;
+  $('vagas-badge').textContent=n+' / 30 cotas';
+  $('m-cotas').textContent=n;$('m-vagas').textContent=30-n;
+  const pct=Math.round(n/30*100);
+  $('prog-bar').style.width=pct+'%';$('prog-label').textContent=pct+'% das vagas preenchidas';
+  $('m-inad').textContent=participantes.filter(p=>p.status==='atrasado').length;
+  const taxa=participantes.reduce((s,p)=>s+p.pagamentos.filter(x=>x.status==='pago').length*(p.taxa/15),0);
+  $('m-receita').textContent=fmt(taxa);
+  const cont={3000:0,4000:0,5000:0,6000:0};
+  participantes.forEach(p=>cont[p.credito]=(cont[p.credito]||0)+1);
+  const mx=Math.max(...Object.values(cont),1);
+  const cores={3000:'#185FA5',4000:'#1D9E75',5000:'#E8720C',6000:'#534AB7'};
+  $('chart-creditos').innerHTML=Object.entries(cont).map(([k,v])=>`<div class="chart-bar-row"><div class="chart-bar-label">R$${+k/1000}k</div><div class="chart-bar-fill" style="width:${Math.round(v/mx*220)+4}px;background:${cores[k]}"></div><div class="chart-bar-val">${v} cota${v!==1?'s':''}</div></div>`).join('');
+  const msg=n===0?'Nenhuma cota cadastrada. Adicione participantes.':n<30?`Faltam ${30-n} cotas para completar o Grupo 001.`:'Grupo 001 completo! 30 participantes cadastrados.';
+  $('alert-box').className='alert '+(n===30?'success':'info');$('alert-msg').textContent=msg;
+  const tb=$('tb-movimentos');
+  tb.innerHTML=movimentos.length===0?'<tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px">Sem movimentos</td></tr>':movimentos.slice(0,8).map(m=>`<tr><td>${fmtDate(m.data)}</td><td>${m.nome}</td><td>${m.acao}</td><td>${m.valor}</td></tr>`).join('');
 }
 
 function renderProspeccao(){
@@ -436,25 +366,24 @@ function renderProspeccao(){
     if(search&&!p.nome.toLowerCase().includes(search))return false;
     if(filter&&p.temp!==filter)return false;
     return true;
-  }).forEach(p=>fases[p.fase]?.push(p));
-  const tempBadge={quente:'tag-quente',morno:'tag-morno',frio:'tag-frio'};
-  const faseLabel={contato:'Contato inicial',proposta:'Proposta enviada',followup:'Follow-up'};
+  }).forEach(p=>{if(fases[p.fase])fases[p.fase].push(p)});
+  const fl={contato:'Contato inicial',proposta:'Proposta enviada',followup:'Follow-up'};
   $('kanban-board').innerHTML=Object.entries(fases).map(([fase,lista])=>`
     <div class="kanban-col">
-      <div class="kanban-hd">${faseLabel[fase]||fase}<span class="badge cinza">${lista.length}</span></div>
-      ${lista.length===0?'<div style="font-size:12px;color:var(--color-text-secondary);text-align:center;padding:12px">Vazio</div>':''}
-      ${lista.map(p=>`
-        <div class="kanban-card">
-          <h4>${p.nome}</h4>
-          <p>${p.zap||'—'} · ${p.origem||'—'} · R$ ${(p.credito/1000).toFixed(0)}k</p>
-          ${p.obs?`<p style="margin-top:3px;font-style:italic">${p.obs}</p>`:''}
-          <div class="card-actions">
-            <span class="tag-interessado ${tempBadge[p.temp]}">${p.temp}</span>
-            ${fase==='contato'?`<button class="btn sm" onclick="avancarFase(${p.id},'proposta')">Proposta <i class="ti ti-arrow-right"></i></button>`:''}
-            ${fase==='proposta'?`<button class="btn sm" onclick="avancarFase(${p.id},'followup')">Follow-up</button>`:''}
-            <button class="btn sm orange" onclick="converterParticipante(${p.id})">Converter</button>
-          </div>
-        </div>`).join('')}
+      <div class="kanban-hd">${fl[fase]||fase} <span class="badge cinza">${lista.length}</span></div>
+      ${lista.length===0?'<div style="font-size:12px;color:#aaa;text-align:center;padding:12px">Vazio</div>':''}
+      ${lista.map(p=>`<div class="kanban-card">
+        <h4>${p.nome}</h4>
+        <p>${p.zap||'—'} · ${p.origem||'—'}</p>
+        <p>Crédito: R$ ${p.credito/1000}k</p>
+        ${p.obs?`<p style="font-style:italic;margin-top:2px">${p.obs}</p>`:''}
+        <div class="card-actions">
+          <span class="tag ${p.temp}">${p.temp}</span>
+          ${fase==='contato'?`<button class="btn sm" onclick="avancarFase(${p.id},'proposta')">Proposta →</button>`:''}
+          ${fase==='proposta'?`<button class="btn sm" onclick="avancarFase(${p.id},'followup')">Follow-up</button>`:''}
+          <button class="btn sm orange" onclick="converterParticipante(${p.id})">Converter</button>
+        </div>
+      </div>`).join('')}
     </div>`).join('');
 }
 
@@ -472,39 +401,33 @@ function renderParticipantes(){
     if(filter&&p.status!==filter)return false;
     return true;
   });
-  const tbody=$('tb-participantes');
-  if(lista.length===0){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--color-text-secondary)">Nenhum participante encontrado.</td></tr>';return}
-  tbody.innerHTML=lista.map(p=>{
-    const pagoCount=p.pagamentos.filter(x=>x.status==='pago').length;
+  const tb=$('tb-participantes');
+  if(lista.length===0){tb.innerHTML='<tr><td colspan="8" style="text-align:center;color:#aaa;padding:20px">Nenhum participante encontrado.</td></tr>';return}
+  tb.innerHTML=lista.map(p=>{
+    const pg=p.pagamentos.filter(x=>x.status==='pago').length;
     return `<tr>
       <td><strong>${p.num}</strong></td>
-      <td>${p.nome}${p.contemplado?` <span class="badge roxo"><i class="ti ti-trophy" aria-hidden="true"></i></span>`:''}</td>
-      <td><a href="https://wa.me/55${p.zap?.replace(/\D/g,'')}" style="color:var(--color-text-info)">${p.zap||'—'}</a></td>
-      <td>R$ ${(p.credito/1000).toFixed(0)}k</td>
+      <td>${p.nome}${p.contemplado?' 🏆':''}</td>
+      <td>${p.zap||'—'}</td>
+      <td>R$ ${p.credito/1000}k</td>
       <td>${fmt(p.parcela)}</td>
       <td>${statusBadge(p.status)}</td>
-      <td><div style="display:flex;align-items:center;gap:6px"><div class="progress-bar" style="width:60px;margin:0"><div class="progress-fill" style="width:${Math.round(pagoCount/15*100)}%;background:#1D9E75"></div></div>${pagoCount}/15</div></td>
-      <td><button class="btn sm" onclick="verPagamentos(${p.id})"><i class="ti ti-cash"></i></button></td>
+      <td><div style="display:flex;align-items:center;gap:6px"><div class="progress-bar" style="width:60px;margin:0"><div class="progress-fill" style="width:${Math.round(pg/15*100)}%;background:#1D9E75"></div></div>${pg}/15</div></td>
+      <td><button class="btn sm" onclick="verPag(${p.id})"><i class="ti ti-cash"></i> Pag.</button></td>
     </tr>`;
   }).join('');
 }
 
-function verPagamentos(id){
+function verPag(id){
   const p=participantes.find(x=>x.id===id);
   if(!p)return;
-  pagamentoAtual=p;
   $('modal-pag-titulo').textContent='Pagamentos — '+p.nome;
   $('modal-pag-body').innerHTML=`
-    <div style="margin-bottom:10px;font-size:13px;color:var(--color-text-secondary)">Crédito: <strong>R$ ${(p.credito/1000).toFixed(0)}k</strong> · Parcela: <strong>${fmt(p.parcela)}</strong> · Vencimento: dia <strong>${p.venc}</strong></div>
-    <div class="pag-linha">
-      ${p.pagamentos.map(pag=>`
-        <div title="Mês ${pag.mes}: ${pag.status}" class="pag-mes ${pag.status}" onclick="togglePag(${p.id},${pag.mes})">${pag.mes}</div>
-      `).join('')}
-    </div>
-    <div style="margin-top:10px;font-size:11px;color:var(--color-text-secondary)">
-      <span style="margin-right:10px"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#EAF3DE;margin-right:3px"></span>Pago</span>
-      <span style="margin-right:10px"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FAEEDA;margin-right:3px"></span>Pendente</span>
-      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FCEBEB;margin-right:3px"></span>Atrasado</span>
+    <div style="margin-bottom:10px;font-size:13px;color:#666">Crédito: <b>R$ ${p.credito/1000}k</b> · Parcela: <b>${fmt(p.parcela)}</b> · Vencimento dia <b>${p.venc}</b></div>
+    <div style="font-size:12px;color:#666;margin-bottom:6px">Clique em um mês para marcar/desmarcar como pago:</div>
+    <div class="pag-linha">${p.pagamentos.map(pag=>`<div title="Mês ${pag.mes}: ${pag.status}" class="pag-mes ${pag.status}" onclick="togglePag(${p.id},${pag.mes})">${pag.mes}</div>`).join('')}</div>
+    <div style="margin-top:8px;font-size:11px;color:#888;display:flex;gap:12px">
+      <span>🟢 Pago</span><span>🟡 Pendente</span><span>🔴 Atrasado</span>
     </div>`;
   openModal('modal-pag');
 }
@@ -515,83 +438,60 @@ function togglePag(partId,mes){
   const pag=p.pagamentos.find(x=>x.mes===mes);
   if(!pag)return;
   pag.status=pag.status==='pago'?'pendente':'pago';
-  if(pag.status==='pago'){pag.dataPag=today();addMov(p.nome,'Pagamento mês '+mes,fmt(pag.valor));}
-  else{pag.dataPag=null;}
-  const atrasados=p.pagamentos.filter(x=>x.status==='atrasado').length;
-  const pendentes=p.pagamentos.filter(x=>x.status==='pendente').length;
-  p.status=atrasados>0?'atrasado':pendentes===15?'pendente':'adimplente';
-  if(p.contemplado)p.status='contemplado';
-  verPagamentos(partId);
-  renderDashboard();
-  renderPagamentos();
+  pag.dataPag=pag.status==='pago'?today():null;
+  if(pag.status==='pago')addMov(p.nome,'Pagamento mês '+mes,fmt(pag.valor));
+  const atras=p.pagamentos.filter(x=>x.status==='atrasado').length;
+  p.status=p.contemplado?'contemplado':atras>0?'atrasado':'adimplente';
+  save();verPag(partId);renderDashboard();renderPagamentos();
 }
 
-function confirmarPagamento(){if(pagamentoAtual)closeModal('modal-pag');}
-
-function renderPagamentosFiltro(){
-  const sel=$('pag-filter-part');
-  if(!sel)return;
+function renderPagFiltro(){
+  const sel=$('pag-filter-part');if(!sel)return;
   const cur=sel.value;
   sel.innerHTML='<option value="">Todos os participantes</option>'+participantes.map(p=>`<option value="${p.id}">${p.nome}</option>`).join('');
   sel.value=cur;
 }
 
 function renderPagamentos(){
-  renderPagamentosFiltro();
-  const filtPart=$('pag-filter-part')?.value||'';
-  const filtMes=+($('pag-filter-mes')?.value||0);
-  const filtStatus=$('pag-filter-status')?.value||'';
+  renderPagFiltro();
+  const fp=$('pag-filter-part')?.value||'';
+  const fm=+($('pag-filter-mes')?.value||0);
+  const fs=$('pag-filter-status')?.value||'';
   let rows=[];
   participantes.forEach(p=>{
-    if(filtPart&&p.id!=filtPart)return;
+    if(fp&&p.id!=fp)return;
     p.pagamentos.forEach(pag=>{
-      if(filtMes&&pag.mes!==filtMes)return;
-      if(filtStatus&&pag.status!==filtStatus)return;
+      if(fm&&pag.mes!==fm)return;
+      if(fs&&pag.status!==fs)return;
       rows.push({part:p,pag});
     });
   });
-  const tbody=$('tb-pagamentos');
-  if(rows.length===0){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--color-text-secondary)">Nenhum pagamento encontrado.</td></tr>';}
-  else{
-    tbody.innerHTML=rows.slice(0,40).map(({part,pag})=>{
-      const statusBg={pago:'verde',pendente:'laranja',atrasado:'vermelho',futuro:'cinza'};
-      return `<tr>
-        <td>${part.nome}</td>
-        <td>Mês ${pag.mes} — ${MESES[pag.mes-1]||''}</td>
-        <td>Dia ${part.venc}</td>
-        <td>${fmt(pag.valor)}</td>
-        <td><span class="badge ${statusBg[pag.status]||'cinza'}">${pag.status}</span></td>
-        <td>${pag.status!=='pago'?`<button class="btn sm primary" onclick="togglePag(${part.id},${pag.mes})"><i class="ti ti-check"></i> Pago</button>`:pag.dataPag?`<span style="font-size:11px;color:var(--color-text-secondary)">${fmtDate(pag.dataPag)}</span>`:'—'}</td>
-      </tr>`;
-    }).join('');
-  }
+  const tb=$('tb-pagamentos');
+  const sb={pago:'verde',pendente:'laranja',atrasado:'vermelho'};
+  tb.innerHTML=rows.length===0?'<tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px">Nenhum pagamento encontrado.</td></tr>':rows.slice(0,50).map(({part,pag})=>`<tr>
+    <td>${part.nome}</td><td>Mês ${pag.mes} — ${MESES[pag.mes-1]||''}</td>
+    <td>Dia ${part.venc}</td><td>${fmt(pag.valor)}</td>
+    <td><span class="badge ${sb[pag.status]||'cinza'}">${pag.status}</span></td>
+    <td>${pag.status!=='pago'?`<button class="btn sm primary" onclick="togglePag(${part.id},${pag.mes})"><i class="ti ti-check"></i> Pago</button>`:pag.dataPag?`<small style="color:#aaa">${fmtDate(pag.dataPag)}</small>`:'✓'}</td>
+  </tr>`).join('');
   let rec=0,pend=0,atras=0,taxa=0;
-  participantes.forEach(p=>{
-    p.pagamentos.forEach(pag=>{
-      if(pag.status==='pago'){rec+=pag.valor;taxa+=p.taxa/15;}
-      else if(pag.status==='pendente')pend+=pag.valor;
-      else if(pag.status==='atrasado')atras+=pag.valor;
-    });
-  });
-  $('m-pag-rec').textContent=fmt(rec);
-  $('m-pag-pend').textContent=fmt(pend);
-  $('m-pag-atras').textContent=fmt(atras);
-  $('m-taxa-rec').textContent=fmt(taxa);
+  participantes.forEach(p=>p.pagamentos.forEach(pag=>{
+    if(pag.status==='pago'){rec+=pag.valor;taxa+=p.taxa/15;}
+    else if(pag.status==='pendente')pend+=pag.valor;
+    else if(pag.status==='atrasado')atras+=pag.valor;
+  }));
+  $('m-pag-rec').textContent=fmt(rec);$('m-pag-pend').textContent=fmt(pend);
+  $('m-pag-atras').textContent=fmt(atras);$('m-taxa-rec').textContent=fmt(taxa);
 }
 
-let candidatoSorteio=null;
-
 function rodarSorteio(){
-  const elegiveis=participantes.filter(p=>!p.contemplado&&p.status==='adimplente');
-  if(elegiveis.length===0){$('sort-result').textContent='—';$('sort-name').textContent='Nenhum participante elegível.';$('btn-confirmar').style.display='none';return;}
-  const btn=$('sort-result');
-  let count=0;
-  const interval=setInterval(()=>{
-    const r=elegiveis[Math.floor(Math.random()*elegiveis.length)];
-    btn.textContent='#'+r.num;
-    $('sort-name').textContent=r.nome;
-    count++;
-    if(count>20){clearInterval(interval);candidatoSorteio=r;$('btn-confirmar').style.display='inline-flex';}
+  const el=participantes.filter(p=>!p.contemplado&&p.status==='adimplente');
+  if(el.length===0){$('sort-result').textContent='—';$('sort-name').textContent='Nenhum participante elegível.';$('btn-confirmar').style.display='none';return;}
+  let c=0;
+  const iv=setInterval(()=>{
+    const r=el[Math.floor(Math.random()*el.length)];
+    $('sort-result').textContent='#'+r.num;$('sort-name').textContent=r.nome;c++;
+    if(c>22){clearInterval(iv);candidatoSorteio=r;$('btn-confirmar').style.display='inline-flex';}
   },80);
 }
 
@@ -599,44 +499,25 @@ function confirmarSorteio(){
   if(!candidatoSorteio)return;
   const p=candidatoSorteio;
   p.contemplado=true;p.status='contemplado';
-  const mesAtual=sorteios.length+1;
-  sorteios.unshift({mes:mesAtual,data:today(),nome:p.nome,credito:p.credito,num:p.num});
-  addMov(p.nome,'Contemplado no sorteio — mês '+mesAtual,fmt(p.credito));
-  $('sort-alerta-msg').textContent=`${p.nome} (cota #${p.num}) foi contemplado com ${fmt(p.credito)} em crédito na Loja das Cores!`;
+  const mes=sorteios.length+1;
+  sorteios.unshift({mes,data:today(),nome:p.nome,credito:p.credito,num:p.num});
+  addMov(p.nome,'Contemplado — mês '+mes,fmt(p.credito));
+  $('sort-alerta-msg').textContent=`${p.nome} (cota #${p.num}) foi contemplado com ${fmt(p.credito)} em crédito!`;
   $('sort-alerta').style.display='flex';
-  candidatoSorteio=null;
-  $('btn-confirmar').style.display='none';
-  renderSorteio();
-  renderDashboard();
-  renderParticipantes();
+  candidatoSorteio=null;$('btn-confirmar').style.display='none';
+  save();renderSorteio();renderDashboard();renderParticipantes();
 }
 
 function renderSorteio(){
-  const tbody=$('tb-sorteios');
-  if(sorteios.length===0){tbody.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--color-text-secondary)">Nenhum sorteio realizado.</td></tr>';}
-  else{tbody.innerHTML=sorteios.map(s=>`<tr><td>Mês ${s.mes}</td><td>${fmtDate(s.data)}</td><td><strong>${s.nome}</strong></td><td>${fmt(s.credito)}</td><td>#${s.num}</td></tr>`).join('');}
-
-  const tbCal=$('tb-calendario');
-  tbCal.innerHTML=MESES.map((mes,i)=>{
-    const sort=sorteios.find(s=>s.mes===i+1);
-    const passado=i<sorteios.length;
-    return `<tr>
-      <td>Mês ${i+1} — ${mes}</td>
-      <td>Última sexta-feira</td>
-      <td>${passado?'<span class="badge verde">Realizado</span>':'<span class="badge cinza">Aguardando</span>'}</td>
-      <td>${sort?sort.nome:'—'}</td>
-    </tr>`;
+  const tb=$('tb-sorteios');
+  tb.innerHTML=sorteios.length===0?'<tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px">Nenhum sorteio realizado.</td></tr>':sorteios.map(s=>`<tr><td>Mês ${s.mes}</td><td>${fmtDate(s.data)}</td><td><b>${s.nome}</b></td><td>${fmt(s.credito)}</td><td>#${s.num}</td></tr>`).join('');
+  $('tb-calendario').innerHTML=MESES.map((mes,i)=>{
+    const s=sorteios.find(x=>x.mes===i+1);
+    return `<tr><td>Mês ${i+1} — ${mes}</td><td>Última sexta-feira</td><td>${s?'<span class="badge verde">Realizado</span>':'<span class="badge cinza">Aguardando</span>'}</td><td>${s?s.nome:'—'}</td></tr>`;
   }).join('');
 }
 
-renderDashboard();
-renderProspeccao();
-renderSorteio();
-
-const demoNames=['Carlos Mendes','Rodrigo Santos','Alexandre Lima','Fábio Costa','Paulo Oliveira'];
-const demoCreds=[3000,4000,5000,5000,6000];
-demoNames.forEach((nome,i)=>{
-  prospectos.push({id:Date.now()+i,nome,zap:`(47) 9${9000+i}-${1000+i}`,credito:demoCreds[i],temp:i<2?'quente':'morno',origem:'Feijoada',obs:'',fase:i<2?'proposta':'contato',data:today()});
-});
-renderProspeccao();
+load();renderDashboard();renderProspeccao();renderSorteio();
 </script>
+</body>
+</html>
